@@ -1,0 +1,47 @@
+<div class="ngx-multiselect-container">
+  <div class="ngx-multiselect-select-wrapper" #selectedList (click)="toggleDropdown($event)">
+    <div class="ngx-multiselect-select-box" tabindex="0">
+      <span *ngIf="selectedItems?.length == 0">{{options.text}}</span>
+      <div class="ngx-multiselect-selected-list" *ngIf="selectedItems?.length > 0 && !options.singleSelection">
+        <div class="ngx-multiselect-item" *ngFor="let item of selectedItems;trackBy: trackByFn.bind(this);let k = index" [hidden]="k > options.badgeShowLimit-1" (click)="onItemClick(item,k,$event);$event.stopPropagation()">
+          <span class="ngx-multiselect-item-label" title="{{item[options.labelKey]}}">{{item[options.labelKey]}}</span>
+          <span class="ngx-multiselect-item-icon"></span>
+        </div>
+      </div>
+      <span [ngClass]="isActive ? 'ngx-multiselect-angle-up' : 'ngx-multiselect-angle-down'"></span>
+    </div>
+  </div>
+  <div class="ngx-multiselect-dropdown-list"
+    [ngClass]="{'top': dropdownListYOffset}"
+    [style.bottom.px]="dropdownListYOffset ? dropdownListYOffset : null"
+     [hidden]="!isActive" #dropdownList>
+    <div [ngClass]="dropdownListYOffset ? 'ngx-multiselect-arrow-down' : 'ngx-multiselect-arrow-up'" class="arrow-2"></div>
+    <div [ngClass]="dropdownListYOffset ? 'ngx-multiselect-arrow-down' : 'ngx-multiselect-arrow-up'"></div>
+    <div class="ngx-multiselect-option-wrapper">
+      <div class="ngx-multiselect-checkbox select-all" *ngIf="options.enableCheckAll" (click)="data?.length > 0 && toggleSelectAll()">
+        <input type="checkbox" [checked]="isSelectAll" [disabled]="data?.length == 0">
+        <label>
+          <span [hidden]="isSelectAll">{{options.selectAllText}}</span>
+          <span [hidden]="!isSelectAll">{{options.unSelectAllText}}</span>
+        </label>
+        <span class="ngx-multiselect-icon-add" *ngIf="options.addNewItem && !options.enableSearchFilter" (click)="showAddItem();$event.stopPropagation()"></span>
+      </div>
+      <div class="ngx-multiselect-filter" *ngIf="options.enableSearchFilter || toggleNewItem">
+        <span *ngIf="options.enableSearchFilter" class="ngx-multiselect-icon search"></span>
+        <span [hidden]="filter == undefined || filter?.length == 0" class="ngx-multiselect-icon clear" (click)="clearSearch()"></span>
+        <span *ngIf="options.addNewItem" [hidden]="filter == undefined || filter?.length == 0 || (data?.length > 0 && options.enableSearchFilter)" class="ngx-multiselect-icon check" (click)="addItem()"></span>
+        <input #searchInput class="ngx-multiselect-input" type="text" [(ngModel)]="filter" [placeholder]="options.enableSearchFilter ? options.searchPlaceholderText : options.newItemText"
+               (input)="options.enableSearchFilter && ngxMultiselectFilter($event)">
+      </div>
+      <div [style.maxHeight]="options.maxHeight+'px'" style="overflow: auto;">
+        <ul class="ngx-multiselect-option-list">
+            <li *ngFor="let item of data; let i = index;" (click)="onItemClick(item,i,$event)"
+                class="ngx-multiselect-checkbox" [ngClass]="isSelected(item) ?  'selected-item' : null">
+                <input *ngIf="options.showCheckbox" type="checkbox" [checked]="isSelected(item)" [disabled]="options.limitSelection == selectedItems?.length && !isSelected(item)"/>
+                <label>{{item[options.labelKey]}}</label>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
