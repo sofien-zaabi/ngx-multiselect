@@ -1,13 +1,15 @@
-<div class="ngx-multiselect-container">
+<div class="ngx-multiselect-container" (clickOutside)="closeDropdown()">
   <div class="ngx-multiselect-select-wrapper" #selectedList (click)="toggleDropdown($event)">
     <div class="ngx-multiselect-select-box" tabindex="0">
       <span *ngIf="selectedItems?.length == 0">{{options.text}}</span>
+      <span *ngIf="options.singleSelection && selectedItems?.length == 1">{{selectedItems[0][options.labelKey]}}</span>
       <div class="ngx-multiselect-selected-list" *ngIf="selectedItems?.length > 0 && !options.singleSelection">
         <div class="ngx-multiselect-item" *ngFor="let item of selectedItems;trackBy: trackByFn.bind(this);let k = index" [hidden]="k > options.badgeShowLimit-1" (click)="onItemClick(item,k,$event);$event.stopPropagation()">
           <span class="ngx-multiselect-item-label" title="{{item[options.labelKey]}}">{{item[options.labelKey]}}</span>
           <span class="ngx-multiselect-item-icon"></span>
         </div>
       </div>
+      <span class="ngx-multiselect-items-count" *ngIf="selectedItems?.length > options.badgeShowLimit">+{{(selectedItems?.length - options.badgeShowLimit) > 9 ? 9 + '+' : selectedItems?.length - options.badgeShowLimit }}</span>
       <span [ngClass]="isActive ? 'ngx-multiselect-angle-up' : 'ngx-multiselect-angle-down'"></span>
     </div>
   </div>
@@ -18,7 +20,7 @@
     <div [ngClass]="dropdownListYOffset ? 'ngx-multiselect-arrow-down' : 'ngx-multiselect-arrow-up'" class="arrow-2"></div>
     <div [ngClass]="dropdownListYOffset ? 'ngx-multiselect-arrow-down' : 'ngx-multiselect-arrow-up'"></div>
     <div class="ngx-multiselect-option-wrapper">
-      <div class="ngx-multiselect-checkbox select-all" *ngIf="options.enableCheckAll" (click)="data?.length > 0 && toggleSelectAll()">
+      <div class="ngx-multiselect-checkbox select-all" *ngIf="!options.singleSelection && options.enableCheckAll" (click)="data?.length > 0 && toggleSelectAll()">
         <input type="checkbox" [checked]="isSelectAll" [disabled]="data?.length == 0">
         <label>
           <span [hidden]="isSelectAll">{{options.selectAllText}}</span>

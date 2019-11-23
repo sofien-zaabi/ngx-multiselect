@@ -107,19 +107,13 @@ export class NgxMultiselectComponent implements OnInit, ControlValueAccessor, On
 
   ngOnInit() {
       this.options = Object.assign(this.defaultOptions, this.options);
-      //this.cachedItems = this.cloneArray(this.data);
-      /*if (this.options.position == 'top') {
-          setTimeout(() => {
-              this.selectedListHeight = { val: 0 };
-              this.selectedListHeight.val = this.selectedListElem.nativeElement.clientHeight;
-          });
-      }*/
+      
   }
 
   ngOnChanges(changes: SimpleChanges) {
       //console.log("ngOnChanges ", changes)
       if (changes.data && !changes.data.firstChange) {
-         // this.cachedItems = this.cloneArray(this.data);
+         
       }
       if (changes.options && !changes.options.firstChange) {
           this.options = Object.assign(this.defaultOptions, this.options);
@@ -151,16 +145,12 @@ export class NgxMultiselectComponent implements OnInit, ControlValueAccessor, On
 
   //From ControlValueAccessor interface
   writeValue(value: any) {
-      /*if(Array.isArray(value) && value.length != this.selectedItems.length) {
-          this.cdr.markForCheck();
-      }*/
       if (value !== undefined && value !== null  && value !== '') {
           if (this.options.singleSelection) {
               try {
 
                   if (value.length > 1) {
                       this.selectedItems = [value[0]];
-                      //throw new MyException(404, { "msg": "Single Selection Mode, Selected Items cannot have more than one item." });
                   }
                   else {
                       this.selectedItems = value;
@@ -202,7 +192,6 @@ export class NgxMultiselectComponent implements OnInit, ControlValueAccessor, On
   }
 
   ngOnDestroy() {
-      //this.subscription.unsubscribe();
   }
 
   onItemClick(item: any, index: number, evt: Event) {
@@ -303,23 +292,9 @@ export class NgxMultiselectComponent implements OnInit, ControlValueAccessor, On
       if (this.searchInput) {
           this.searchInput.nativeElement.value = "";
       }
-      if (this.searchInput) {
-          this.searchInput.nativeElement.value = "";
-      }
       this.filter = "";
       this.isActive = false;
       this.onClose.emit(false);
-  }
-
-  public closeDropdownOnClickOut() {
-      if (this.searchInput) {
-          this.searchInput.nativeElement.value = "";
-      }
-      if (this.searchInput) {
-          this.searchInput.nativeElement.value = "";
-      }
-      //this.filter = "";
-      this.isActive = false;
   }
 
   toggleSelectAll() {
@@ -396,8 +371,6 @@ export class NgxMultiselectComponent implements OnInit, ControlValueAccessor, On
   }
 
   calculateDropdownDirection() {
-      //let shouldOpenTowardsTop = this.options.position == 'top';
-      //if (this.options.autoPosition) {
           const dropdownHeight = this.dropdownListElem.nativeElement.clientHeight;
           const viewportHeight = document.documentElement.clientHeight;
           const selectedListBounds = this.selectedListElem.nativeElement.getBoundingClientRect();
@@ -410,15 +383,6 @@ export class NgxMultiselectComponent implements OnInit, ControlValueAccessor, On
           else {
               this.openTowardsTop(false);
           }
-          // Keep preference if there is not enough space on either the top or bottom
-          /* 			if (spaceOnTop || spaceOnBottom) {
-                          if (shouldOpenTowardsTop) {
-                              shouldOpenTowardsTop = spaceOnTop;
-                          } else {
-                              shouldOpenTowardsTop = !spaceOnBottom;
-                          }
-                      } */
-      //}
 
   }
   openTowardsTop(value: boolean) {

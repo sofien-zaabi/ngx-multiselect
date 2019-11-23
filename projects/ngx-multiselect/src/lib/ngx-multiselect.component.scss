@@ -2,12 +2,10 @@ $nameprefix: ".ngx-multiselect";
 [hidden] {
   display: none!important;
 }
-.ngx-multiselect {
-  width: 100%;
-}
 #{$nameprefix} {
   &-container {
       position: relative;
+      //display: flex;
   }
   &-select-wrapper {
       display: flex;
@@ -16,14 +14,14 @@ $nameprefix: ".ngx-multiselect";
       padding: 10px;
       background: #fff;
       border: 1px solid #cfd7db;
-      display: inline-block;
+      //display: inline-block;
       border-width: 1px;
       line-height: 1.25;
       border-radius: 3px;
       font-size: 14px;
-      padding: 5px 10px;
+      padding: 6px 10px;
       cursor: pointer;
-      min-height: 36px;
+      //min-height: 36px;
       &.disabled {
         background: #ccc;
     }
@@ -36,7 +34,7 @@ $nameprefix: ".ngx-multiselect";
     outline: none;
     & #{$nameprefix}-item {
               list-style: none;
-              padding: 4px 8px;
+              padding: 4px 5px;
               background: #47a1e0;
               color: #fff;
               border-radius: 2px;
@@ -56,8 +54,8 @@ $nameprefix: ".ngx-multiselect";
               }
               & #{$nameprefix}-item-icon {
                 position: absolute;
-                right: 8px;
-                top: 4px;
+                right: 5px;
+                top: 5px;
                 width: 12px;
                 height:12px;
                 background-repeat: no-repeat;
@@ -84,10 +82,18 @@ $nameprefix: ".ngx-multiselect";
       transform: rotate(180deg);
     }
     &-items-count {
-        position: absolute;
-        right: 30px;
-        top: 50%;
-        transform: translateY(-50%);
+      position: absolute;
+      background: #47a1e0;
+      color: #fff;
+      border-radius: 50%;
+      right: 30px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 22px;
+      height: 22px;
+      text-align: center;
+      padding: 2px;
+      font-weight: 600;
     }
     &-selected-list {
         width: 100%;
@@ -119,13 +125,16 @@ $nameprefix: ".ngx-multiselect";
               padding: 6px 10px;
               cursor: pointer;
               text-align: left;
-              border-bottom: 1px solid #fff;
+              border-bottom: 1px solid #ececec;
+              label {
+                margin: 0 !important;
+              }
           }
-          li:first-child {
+          /*li:first-child {
               padding-top: 8px;
-          }
+          }*/
           li:last-child{
-              padding-bottom: 8px;
+              //padding-bottom: 8px;
               border-bottom: none;
           }
           li.selected-item {
@@ -158,13 +167,14 @@ $nameprefix: ".ngx-multiselect";
     }
   }
   &-arrow-down {
-    bottom: -14px;
+    bottom: -12px;
     top: unset;
     transform: rotate(180deg);
   }
   &-arrow-down.arrow-2 {
       top: unset;
-      bottom: -16px;
+      border-bottom: 15px solid #cfd7db;
+      bottom: -14px;
   }
   &-option-wrapper {
       border: 1px solid #cfd7db;
@@ -236,12 +246,13 @@ $nameprefix: ".ngx-multiselect";
   &-checkbox input[type="checkbox"] + label{
     position: relative;
     padding-left: 2em;
-    vertical-align: middle;
+    //vertical-align: middle;
     user-select: none;
     cursor: pointer;
     margin: 0px;
     /*color: $label-color;*/
     font-weight: 300;
+    line-height: 1.2;
   }
   &-checkbox input[type="checkbox"] + label:before {
     box-sizing: content-box;

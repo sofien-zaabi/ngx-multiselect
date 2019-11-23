@@ -63,6 +63,7 @@
               "projects/ngx-multiselect-app/src/assets"
             ],
             "styles": [
+              "projects/ngx-multiselect-app/src/assets/bootstrap.min.css",
               "projects/ngx-multiselect-app/src/styles.scss"
             ],
             "scripts": []

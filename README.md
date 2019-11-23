@@ -2,7 +2,9 @@
 # Angular 4/6/8 Multiselect
 
 Angular 2 multiselect component for web applications. Easy to integrate and use.
-
+It's not a plugin and there's no NPM module for it.
+I created this component to meet our needs in different projects and i published here, maybe it will help someone else.
+It has all the normal and simples features you would need in a multiselect component, if you don't find the features you are looking for you can change the source code to satisfy your need or you can use a real multiselect plugin with more complexe features.
 
 
 ## Table of Contents
@@ -11,10 +13,9 @@ Angular 2 multiselect component for web applications. Easy to integrate and use.
 ##### 3. Usage
 ##### 6. Template Driven Forms support
 ##### 7. Reactive Forms support
-##### 8. Settings configuration
-##### 9. Callbacks and events
-##### 12. Search filter
-##### 13. Custom Search / Search API
+##### 8. Optionss configuration
+##### 9. Events
+##### 10. Run configuration
 
 
 
@@ -155,14 +156,12 @@ Add the following component tag in you template
 ```js
 userForm: FormGroup;
 this.actorForm = this.fb.group({
-            name: '',
-            year: ['', Validators.required],
             actors: [[], Validators.required]
         });
 
 ```
 
-### Settings
+### Options
 The following list of settings are supported by the component. Configure the settings to meet your requirement.
 
 | Setting         |Type    | Description            | Default Value |

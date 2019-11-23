@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { NgxMultiselectModule } from 'ngx-multiselect';
 
 import { AppComponent } from './app.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -10,7 +11,9 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    NgxMultiselectModule
+    NgxMultiselectModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
