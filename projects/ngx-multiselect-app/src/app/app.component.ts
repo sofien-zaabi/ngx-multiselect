@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { DropdownOptions } from 'ngx-multiselect/lib/multi-select-options';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +18,15 @@ export class AppComponent implements OnInit {
     actors: [{ id: 1, name: "Brad Pitt" }]
   };
   actorForm: FormGroup;
+  reactiveFormOptions: any = {
+    initValueFunc: (actors: any[], value: any) => {
+      const valueArray: string[] = value.split(',');
+      return actors.filter(actor =>  valueArray.includes(actor.name));
+    },
+    formValueChangeFunc: (seletedItems: any[]) => {
+      return seletedItems.reduce((acc, currentValue) => !acc ? acc + currentValue.name : acc + ',' + currentValue.name, "");
+    }
+  }
 
   constructor(private formBuilder: FormBuilder) {}
 
@@ -48,7 +58,7 @@ ngOnInit() {
     addNewItem: true
   }
   this.actorForm = this.formBuilder.group({
-    actors: [[{id: 0, name: 'Jason Statham'}], Validators.required]
+    actors: ['Jason Statham,Angelina Jolie', Validators.required]
 });
   this.actors = [{id: 0, name: 'Jason Statham'}, {id: 1, name: 'Brad Pitt'}, {id: 2, name: 'Angelina Jolie'}, {id: 3, name: 'Nicole Kidman'}, {id: 5, name: 'Will Smith'}]
 }
@@ -60,15 +70,19 @@ onAddActor(data: string){
   this.selectedActors.push(actor);
 }
 onItemSelect(event: Event){
-  console.log("onItemSelect event ", event.target)
+  console.log("onItemSelect event ", event);
+  console.log("onItemSelect actorForm ", this.actorForm.value);
 }
 OnItemDeSelect(event: Event){
-  console.log("OnItemDeSelect event ", event.target)
+  console.log("OnItemDeSelect event ", event);
+  console.log("OnItemDeSelect actorForm ", this.actorForm.value);
 }
 onSelectAll(event: Event){
-  console.log("onSelectAll event ", event.target)
+  console.log("onSelectAll event ", event)
+  console.log("onSelectAll actorForm ", this.actorForm.value);
 }
 onDeSelectAll(event: Event){
-  console.log("onDeSelectAll event ", event.target)
+  console.log("onDeSelectAll event ", event);
+  console.log("onDeSelectAll actorForm ", this.actorForm.value);
 }
 }

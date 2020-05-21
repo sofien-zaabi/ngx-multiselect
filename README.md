@@ -141,7 +141,7 @@ Add the following component tag in you template
 <form [formGroup]="actorForm" novalidate style="border: 1px solid #ccc; padding: 10px;">
         <div class="form-group">
             <label for="name">Skills</label>
-           <ngx-multiselect [data]="actors" [(ngModel)]="selectedActors" 
+           <ngx-multiselect [data]="actors"  
                                   [options]="options" 
                                   (onSelect)="onItemSelect($event)"
                                   (onDeSelect)="OnItemDeSelect($event)" 
@@ -187,8 +187,9 @@ The following list of settings are supported by the component. Configure the set
 | noDataLabel | String | Label text when no data is available in the list| 'No Data Available' |
 | showCheckbox | Boolean | Show or hide checkboxes in the list | true |
 | addNewItemOnFilter | Boolean | Whe you filter items and if, the item is not found, you can add the text as new item to the list | false |
-| addNewButtonText | String | The text in the button when `addNewItemOnFilter` is enabled | 'Add' |
 | escapeToClose | boolean | Press excape key to close the dropdown | true |
+| initValueFunc | function | A function to extract the selected items from formControl value | null |
+| formValueFunc | function | A function to return formControl value from the selected items | null |
 
 ### Events
 - `onSelect` - Return the selected item on selection.

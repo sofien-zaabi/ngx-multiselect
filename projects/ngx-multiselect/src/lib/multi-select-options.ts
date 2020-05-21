@@ -20,4 +20,6 @@ export interface DropdownOptions{
     addNewItem?: boolean;
     newItemText?: string;
     escapeToClose?: boolean;
+    initValueFunc?: (data: any[], value: any) => any[];
+    formValueChangeFunc?: (seletedItems: any[]) => any;
 }
