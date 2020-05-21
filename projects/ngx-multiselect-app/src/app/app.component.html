@@ -62,7 +62,7 @@
           <ngx-multiselect [data]="actors" name="actor" [options]="addOptions" class="" (onItemAdd)="onAddActor($event)" style="width: 100%;"></ngx-multiselect>
         </div>
       </div>
-      <form class="form-group row" (ngSubmit)="onSubmit()" #loginForm="ngForm">
+      <form class="form-group row" #loginForm="ngForm">
             <label class="col-4 col-form-label" for="name">Template Forms example</label>
             <div class="col-8"> 
               <ngx-multiselect [data]="actors" [(ngModel)]="formModel.actors"  
@@ -76,7 +76,7 @@
       <form class="form-group row" [formGroup]="actorForm">
         <label class="col-4 col-form-label" for="name">Reactive Forms example</label>
         <div class="col-8"> 
-          <ngx-multiselect formControlName="actors" [data]="actors"   
+          <ngx-multiselect formControlName="actors" [data]="actors" [options]="reactiveFormOptions"  
                                 (onSelect)="onItemSelect($event)"
                                 (onDeSelect)="OnItemDeSelect($event)" 
                                 (onSelectAll)="onSelectAll($event)" 

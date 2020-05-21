@@ -18,6 +18,8 @@ export interface DropdownOptions{
     labelKey?: string;
     primaryKey: string;
     addNewItem?: boolean;
-    newItemText?: string;
+    newItemPlaceholder?: string;
     escapeToClose?: boolean;
+    selectedItemsFunc?: (data: any[], value: any) => any[];
+    formValueFunc?: (seletedItems: any[]) => any;
 }
