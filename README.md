@@ -6,6 +6,8 @@ It's not a plugin and there's no NPM module for it.
 I created this component to meet our needs in different projects and i published here, maybe it will help someone else.
 It has all the normal and simples features you would need in a multiselect component, if you don't find the features you are looking for you can change the source code to satisfy your need or you can use a real multiselect plugin with more complexe features.
 
+![alt text](https://github.com/sofien-zaabi/ngx-multiselect/blob/master/docs/multiselect-1.png?raw=true)
+
 
 ## Table of Contents
 ##### 1. Getting Started
@@ -186,9 +188,10 @@ The following list of settings are supported by the component. Configure the set
 | position | String | Set the position of the dropdown list to 'top' or 'bottom'| bottom |
 | noDataLabel | String | Label text when no data is available in the list| 'No Data Available' |
 | showCheckbox | Boolean | Show or hide checkboxes in the list | true |
-| addNewItemOnFilter | Boolean | Whe you filter items and if, the item is not found, you can add the text as new item to the list | false |
+| addNewItem | Boolean | Add the text as new item to the list | false |
+| newItemPlaceholder | String | Placeholder text for add Item imput text | 'New Item' |
 | escapeToClose | boolean | Press excape key to close the dropdown | true |
-| initValueFunc | function | A function to extract the selected items from formControl value | null |
+| selectedItemsFunc | function | A function to extract the selected items from formControl value | null |
 | formValueFunc | function | A function to return formControl value from the selected items | null |
 
 ### Events
@@ -204,8 +207,8 @@ The following list of settings are supported by the component. Configure the set
     Example : (onOpen)="onOpen($event)"
 - `onClose` - Callback method, fired when the dropdown is closed
     Example : (onClose)="onClose($event)"
-    Example : (onScrollToEnd)="fetchMore($event)"
-- `onAddFilterNewItem` - Callback event fired when you click the `Add` button which will appear when `addNewItemOnFilter` setting is enabled.
+- `onItemAdd` - Callback event fired when you click the check icon button to add new item to the list if `addNewItem` setting is enabled.
+    Example : (onItemAdd)="onClose($event)"
 
 ## Run locally
 - Clone the repository or downlod the .zip,.tar files.

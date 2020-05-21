@@ -99,10 +99,10 @@ export class NgxMultiselectComponent implements OnInit, ControlValueAccessor, On
         labelKey: 'name',
         primaryKey: 'id',
         addNewItem: false,
-        newItemText: "Add Item",
+        newItemPlaceholder: "New Item",
         escapeToClose: true,
-        initValueFunc: null,
-        formValueChangeFunc: null
+        selectedItemsFunc: null,
+        formValueFunc: null
     }
 
     constructor(private cdr: ChangeDetectorRef) { }
@@ -147,8 +147,8 @@ export class NgxMultiselectComponent implements OnInit, ControlValueAccessor, On
 
     //From ControlValueAccessor interface
     writeValue(value: any) {
-        if (this.options.initValueFunc && typeof this.options.initValueFunc === 'function') {
-            value = this.options.initValueFunc(this.data, value);
+        if (this.options.selectedItemsFunc && typeof this.options.selectedItemsFunc === 'function') {
+            value = this.options.selectedItemsFunc(this.data, value);
         }
         if (value !== undefined && value !== null && value !== '') {
             if (this.options.singleSelection) {
@@ -259,8 +259,8 @@ export class NgxMultiselectComponent implements OnInit, ControlValueAccessor, On
         else
             this.selectedItems.push(item);
         let formValue: any = this.selectedItems;
-        if (this.options.formValueChangeFunc && typeof this.options.formValueChangeFunc === 'function')
-            formValue = this.options.formValueChangeFunc(formValue);
+        if (this.options.formValueFunc && typeof this.options.formValueFunc === 'function')
+            formValue = this.options.formValueFunc(formValue);
         this.onChangeCallback(formValue);
         this.onTouchedCallback(formValue);
     }
@@ -271,8 +271,8 @@ export class NgxMultiselectComponent implements OnInit, ControlValueAccessor, On
             }
         });
         let formValue: any = this.selectedItems;
-        if (this.options.formValueChangeFunc && typeof this.options.formValueChangeFunc === 'function')
-            formValue = this.options.formValueChangeFunc(formValue);
+        if (this.options.formValueFunc && typeof this.options.formValueFunc === 'function')
+            formValue = this.options.formValueFunc(formValue);
         this.onChangeCallback(formValue);
         this.onTouchedCallback(formValue);
     }
@@ -315,8 +315,8 @@ export class NgxMultiselectComponent implements OnInit, ControlValueAccessor, On
             this.selectedItems = this.data.slice();
             this.isSelectAll = true;
             let formValue: any = this.selectedItems;
-            if (this.options.formValueChangeFunc && typeof this.options.formValueChangeFunc === 'function')
-                formValue = this.options.formValueChangeFunc(formValue);
+            if (this.options.formValueFunc && typeof this.options.formValueFunc === 'function')
+                formValue = this.options.formValueFunc(formValue);
             this.onChangeCallback(formValue);
             this.onTouchedCallback(formValue);
 
@@ -326,8 +326,8 @@ export class NgxMultiselectComponent implements OnInit, ControlValueAccessor, On
             this.selectedItems = [];
             this.isSelectAll = false;
             let formValue: any = this.selectedItems;
-            if (this.options.formValueChangeFunc && typeof this.options.formValueChangeFunc === 'function')
-                formValue = this.options.formValueChangeFunc(formValue);
+            if (this.options.formValueFunc && typeof this.options.formValueFunc === 'function')
+                formValue = this.options.formValueFunc(formValue);
             this.onChangeCallback(formValue);
             this.onTouchedCallback(formValue);
 
@@ -335,7 +335,7 @@ export class NgxMultiselectComponent implements OnInit, ControlValueAccessor, On
         }
     }
 
-    ngxMultiselectFilter(event: any) {
+    search(event: any) {
         if (!this.initData) {
             this.initData = this.data;
         }

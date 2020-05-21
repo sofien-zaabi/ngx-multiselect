@@ -32,8 +32,8 @@
         <span *ngIf="options.enableSearchFilter" class="ngx-multiselect-icon search"></span>
         <span [hidden]="filter == undefined || filter?.length == 0" class="ngx-multiselect-icon clear" (click)="clearSearch()"></span>
         <span *ngIf="options.addNewItem" [hidden]="filter == undefined || filter?.length == 0 || (data?.length > 0 && options.enableSearchFilter)" class="ngx-multiselect-icon check" (click)="addItem()"></span>
-        <input #searchInput class="ngx-multiselect-input" type="text" [(ngModel)]="filter" [placeholder]="options.enableSearchFilter ? options.searchPlaceholderText : options.newItemText"
-               (input)="options.enableSearchFilter && ngxMultiselectFilter($event)">
+        <input #searchInput class="ngx-multiselect-input" type="text" [(ngModel)]="filter" [placeholder]="options.enableSearchFilter ? options.searchPlaceholderText : options.newItemPlaceholder"
+               (input)="options.enableSearchFilter && search($event)">
       </div>
       <div [style.maxHeight]="options.maxHeight+'px'" style="overflow: auto;">
         <ul class="ngx-multiselect-option-list">

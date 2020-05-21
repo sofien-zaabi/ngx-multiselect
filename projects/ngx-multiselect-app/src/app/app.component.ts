@@ -19,11 +19,11 @@ export class AppComponent implements OnInit {
   };
   actorForm: FormGroup;
   reactiveFormOptions: any = {
-    initValueFunc: (actors: any[], value: any) => {
+    selectedItemsFunc: (actors: any[], value: any) => {
       const valueArray: string[] = value.split(',');
       return actors.filter(actor =>  valueArray.includes(actor.name));
     },
-    formValueChangeFunc: (seletedItems: any[]) => {
+    formValueFunc: (seletedItems: any[]) => {
       return seletedItems.reduce((acc, currentValue) => !acc ? acc + currentValue.name : acc + ',' + currentValue.name, "");
     }
   }
@@ -46,7 +46,7 @@ ngOnInit() {
     unSelectAllText: 'UnSelect All',
     primaryKey: "id",
     labelKey: "name",
-    badgeShowLimit: 3,
+    badgeShowLimit: 2,
     addNewItem: true
   }
   this.addOptions = {

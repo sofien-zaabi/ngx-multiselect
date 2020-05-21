@@ -14,6 +14,11 @@
           "options": {
             "tsConfig": "projects/ngx-multiselect/tsconfig.lib.json",
             "project": "projects/ngx-multiselect/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ngx-multiselect/tsconfig.lib.prod.json"
+            }
           }
         },
         "test": {
@@ -57,7 +62,7 @@
             "main": "projects/ngx-multiselect-app/src/main.ts",
             "polyfills": "projects/ngx-multiselect-app/src/polyfills.ts",
             "tsConfig": "projects/ngx-multiselect-app/tsconfig.app.json",
-            "aot": false,
+            "aot": true,
             "assets": [
               "projects/ngx-multiselect-app/src/favicon.ico",
               "projects/ngx-multiselect-app/src/assets"
@@ -81,7 +86,6 @@
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -160,6 +164,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "ngx-multiselect"
+    }
+  },
+  "defaultProject": "ngx-multiselect",
+  "cli": {
+    "analytics": false
+  }
 }
